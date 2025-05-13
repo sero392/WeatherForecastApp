@@ -1,12 +1,18 @@
 <div class="flex justify-center items-center h-screen flex-col">
-  <div class="text-center">
-    <h1 class="text-4xl font-bold mb-4">Weather Forecast</h1>
-  </div>
-  <div class="bg-slate-300 flex justify-center items-center px-8 py-5 rounded-lg shadow-lg">
-    <div class="text-center">
-      <h2 class="text-2xl font-semibold mb-4">Current Weather</h2>
-      <p class="text-xl mb-2">Temperature: {{currentTimeForecastTemperature}}°C</p>
-      <p class="text-xl mb-2">Current Time: {{currentTime}}:00</p>
+
+  <div class="bg-sky-600 flex flex-col justify-center items-center px-8 py-5 shadow-lg text-white">
+
+    <div class="w-full" >
+      <p-select fluid [options]="cities" [(ngModel)]="selectedCity" (onChange)="changeSelect($event)" optionLabel="name" placeholder="Şehir Seçiniz" 
+      >
+
+      </p-select>
+    </div>
+    <div *ngIf="selectedCity?.code" class="text-center mt-5">
+      <h2 class="text-2xl font-semibold mb-4">Şuanki Hava Durumu</h2>
+      <p class="text-xl mb-2">Derece: {{currentTimeForecastTemperature()}}°C</p>
+      <p class="text-xl mb-2">Saat: {{currentTime()}}:00</p>
+      <p class="text-xl mb-2">Hava Durumur: {{weatherDescription[currentWeatherStatus()]}}</p>
     </div>
     
   </div>
